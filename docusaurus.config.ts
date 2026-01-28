@@ -6,7 +6,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
   title: 'TrustBOM',
-  tagline: 'Privacy-Preserving SBOM Verification with Zero-Knowledge Proofs',
+  tagline: 'Trust my SBOM! (But Don\'t look at it)',
   favicon: 'img/favicon.ico',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
