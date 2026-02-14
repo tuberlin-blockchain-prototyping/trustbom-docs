@@ -25,7 +25,7 @@ The CI/CD workflow consists of two jobs:
 
 **Job 1** runs on standard GitHub-hosted runners and handles the build and SBOM generation.
 
-**Job 2** runs on a self-hosted runner inside your Kubernetes cluster.
+**Job 2** runs on a self-hosted runner inside your Kubernetes cluster. It uses the [sbom-conversion](https://github.com/tuberlin-blockchain-prototyping/sbom-conversion) tool to transform the CycloneDX SBOM into a Sparse Merkle Tree (SMT).
 
 :::info Prototype Setup
 The two-job architecture with a self-hosted runner is specific to this prototype setup. Since TrustBOM services and the Hardhat blockchain run locally (not in the cloud), Job 2 needs to run inside the Kubernetes cluster to access them.
@@ -214,7 +214,7 @@ jobs:
             sleep 2
           done
 
-      # Download sbom-converter and transform CycloneDX SBOM into a Sparse Merkle Tree
+      # Download sbom-converter (https://github.com/tuberlin-blockchain-prototyping/sbom-conversion) and transform CycloneDX SBOM into a Sparse Merkle Tree
       - name: Build SMT from SBOM
         id: build_smt
         timeout-minutes: 15
