@@ -67,7 +67,7 @@ For the first push to GHCR, you may need to configure package visibility:
 ## Complete Workflow Template
 
 :::tip Copy and Paste
-Copy this workflow to `.github/workflows/sbom-ci.yaml` in your repository.
+Copy this workflow to `.github/workflows/sbom-ci.yaml` in your repository. **This template needs to be customized** for your project—see [Customization Points](#customization-points) below for required changes (image name, Dockerfile path, etc.).
 :::
 
 :::warning Current Limitation

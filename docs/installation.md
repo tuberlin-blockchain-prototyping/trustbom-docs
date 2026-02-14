@@ -12,7 +12,7 @@ This system was developed and tested on **Ubuntu 24.04 LTS** (kernel 6.8.0-90-ge
 
 ## Prerequisites
 
-- [Docker](https://docs.docker.com/get-docker/) (must be running)
+- [Docker](https://docs.docker.com/get-docker/) 
 - [kind](https://kind.sigs.k8s.io/docs/user/quick-start/#installation)
 - [kubectl](https://kubernetes.io/docs/tasks/tools/)
 - [helm](https://helm.sh/docs/intro/install/)
@@ -35,25 +35,25 @@ TrustBOM uses a self-hosted GitHub Actions Runner to execute CI/CD jobs inside t
 
 #### Step 2.1: Create the App
 
-1. Go to your GitHub organization's settings (or personal settings for personal repos)
+1. Go to your GitHub organization's settings
 2. Navigate to **Developer settings** → **GitHub Apps** → **New GitHub App**
 3. Fill in the required fields:
    - **GitHub App name**: `TrustBOM Runner` (or any unique name)
-   - **Homepage URL**: `https://github.com/your-org` (can be any URL)
+   - **Homepage URL**: `https://github.com/tuberlin-blockchain-prototyping` (can be any URL)
    - **Webhook**: Uncheck "Active" (not needed)
 
 #### Step 2.2: Set Permissions
 
 Under **Repository permissions**, set:
 - **Actions**: Read and write
-- **Administration**: Read and write
-- **Checks**: Read and write
+- **Artifact metadata** Read-only
+- **Attestations** Read-only
 - **Metadata**: Read-only
 
-Under **Organization permissions** (if using an organization):
+Under **Organization permissions**:
 - **Self-hosted runners**: Read and write
 
-#### Step 2.3: Create the App
+#### Step 2.3: Finish Creation and Retrieve App ID
 
 1. Click **Create GitHub App**
 2. Note the **App ID** displayed on the app's page
@@ -67,7 +67,7 @@ Under **Organization permissions** (if using an organization):
 #### Step 2.5: Install the App
 
 1. On the app's page, click **Install App** in the left sidebar
-2. Select your organization or account
+2. Select your organization
 3. Choose **Only select repositories** and select the repositories that will use TrustBOM
 4. Click **Install**
 5. After installation, note the **Installation ID** from the URL:
@@ -76,6 +76,12 @@ Under **Organization permissions** (if using an organization):
                                               ^^^^^^^^
                                               This is your Installation ID
    ```
+
+:::info Public Repositories
+If you want to enable the runner for public repositories, you must make sure this is enabled for the group that is set for the runner.
+For this, go to your GitHub organization's settings and navigate to **Actions** → **Runner groups**.
+Select the group of the runner and enable **Allow public repositories**.
+:::
 
 ### 3. Configure Environment
 
@@ -91,7 +97,7 @@ PRIVATE_KEY_FILE=your-app-name.private-key.pem
 |----------|-------------|
 | `ABP_ACTIONS_RUNNER_APP_ID` | The App ID from step 2.3 |
 | `ABP_ACTIONS_RUNNER_APP_INSTALLATION_ID` | The Installation ID from step 2.5 |
-| `PRIVATE_KEY_FILE` | Path to the `.pem` file (relative to repo root or absolute) |
+| `PRIVATE_KEY_FILE` | Path to the `.pem` file (absolute) |
 
 ### 4. Run Setup
 

@@ -21,7 +21,7 @@ TrustBOM operates in two phases:
 2. **Each build automatically:**
    - Generates a CycloneDX SBOM from your container image
    - Transforms it into a Sparse Merkle Tree (SMT)
-   - Stores the SMT in merkle-proof-service
+   - Stores the SMT via merkle-proof-service
    - Commits the root hash to the blockchain
 3. **When customers request verification** - Generate proofs via the proof-orchestrator API ([Vendor Workflow](./vendor-workflow))
 
